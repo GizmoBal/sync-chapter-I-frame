@@ -8,6 +8,7 @@ import argparse
 import math
 import datetime
 from vapoursynth import core
+from pymediainfo import MediaInfo
 from pathlib import Path
 from colorama import init as colorama_init
 from colorama import Fore
@@ -46,25 +47,23 @@ if pframe == None:
 
 chapExt = os.path.splitext(chapterFile)[1]
 
-# Strip all <ChapterTimeEnd>
-# subprocess.run("sed -i '' '/TimeEnd/d' " + chapterFile,shell=True)
-
 if chapExt == '.xml':
-    numberChapter = int(subprocess.getoutput("grep 'ChapterTimeStart' " + chapterFile + " | wc -l"))
+    with open(chapterFile, 'r') as chapter:
+        chapterText = chapter.read()
+        numberChapter = len(re.findall("<ChapterTimeStart>([0-9.:;]*)</ChapterTimeStart>",chapterText))
 elif chapExt =='.txt':
-    numberChapter = numberChapter = int(subprocess.getoutput("cat " + chapterFile + " | wc -l"))
+    with open(chapterFile, 'r') as chapter:
+        numberChapter = len(chapter.readlines())
     numberChapter = int(numberChapter/2)
 else:
     sys.exit(Fore.RED + "Wrong chapter file." + Style.RESET_ALL)
 if numberChapter < 1:
     sys.exit(Fore.RED + "Wrong chapter file." + Style.RESET_ALL)
 
-frameRateLine = str(subprocess.getoutput("mediainfo " + videoFile + " | head -n 10 | grep 'Frame rate'"))
-if len(frameRateLine) > 0:
-    frameRate = re.search("[0-9][0-9.]*",frameRateLine).group()
-else:
+media_info = MediaInfo.parse(videoFile)
+frameRate = str(media_info.general_tracks[0].frame_rate)
+if frameRate == None:
     sys.exit(Fore.RED + "Wrong video file." + Style.RESET_ALL)
-
 if float(frameRate) < 5.0 or float(frameRate) > 100.0:
     sys.exit(Fore.RED + "Wrong frame rate." + Style.RESET_ALL)
 
