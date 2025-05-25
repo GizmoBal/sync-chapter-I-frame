@@ -2,11 +2,11 @@
 
 ## Description
 
-When you have sync'ed chapters coming from another source to a video file, you may wish, as a final step, to slightly shift the timecodes to the nearest I-frame.  This script automates that final step, although it will be sometimes better to do it manually with a human being taking the best decisions.  The script takes a Matroska chapter file (either xml or txt) and a video file as inputs and generates a new chapter file with timecodes approprately shifted.
+When you have sync'ed chapters coming from another source to a video file, you may wish, as a final step, to slightly shift the timecodes to the nearest I-frame.  This script automates that final step, although it will be sometimes better to do it manually with a human being taking the best decisions.  The script takes a Matroska chapter file (either xml or txt) and a video file as inputs and generates a new chapter file with timecodes appropriately shifted.
 
 ## Requirement
 
-This script needs a working installation of `VapourSynth` with `ffms2` indexer and the `mediainfo` commandline.
+This script needs a working installation of `VapourSynth` with the `ffms2` indexer and the `mediainfo` commandline.
 
 
 ## Screenshots
@@ -34,4 +34,4 @@ If the -p option is not provided, then the script will always search for the nea
 
 ## Features
 
-The script genererates a new xml/txt chapter file with all timecodes updated. It prints on stdout the number of frames by which each chapter has been shifted and if the corresponding new frame is a I-frame or a P-frame.
+The script generates a new xml/txt chapter file with all the timecodes updated. It prints on stdout the number of frames by which each chapter has been shifted and if the corresponding new frame is a I-frame or a P-frame.
