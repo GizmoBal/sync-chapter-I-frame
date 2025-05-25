@@ -1,0 +1,6 @@
+colorama
+datetime
+vapoursynth
+pymediainfo
+argparse
+pathlib
