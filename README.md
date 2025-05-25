@@ -4,7 +4,7 @@
 
 When you have sync'ed chapters coming from another source to a video file, you may wish, as a final step, to slightly shift the timecodes to the nearest I-frame.  This script automates that final step, although it will be sometimes better to do it manually with a human being taking the best decisions.  The script takes a Matroska chapter file (either xml or txt) and a video file as inputs and generates a new chapter file with timecodes appropriately shifted.
 
-## Requirement
+## Requirements
 
 This script needs a working installation of `VapourSynth` with the `ffms2` indexer and the `mediainfo` commandline.
 
@@ -30,7 +30,7 @@ options:
   -p, --pframe PFRAME  Maximal admissible distance to nearest I-frame
 ```
 
-If the -p option is not provided, then the script will always search for the nearest I-frame, no matter how far it is.If this option is given with an integer argument, the script will first search for an I-frame within the admissible range and fall back to the nearest P-frame if no I-frame is found within the admissible range.
+If the -p option is not provided, then the script will always search for the nearest I-frame, no matter how far it is. If this option is given with an integer argument, the script will first search for an I-frame within the admissible range and fall back to the nearest P-frame if no I-frame is found within the admissible range.
 
 ## Features
 
