@@ -19,7 +19,7 @@ This script needs a working installation of `VapourSynth` with the `ffms2` index
 ```
 usage: syncChapter.vpy [-h] [-p PFRAME] chapter video
 
-This script change timecodes in a xml/txt chapter file to match the nearest I-frame of a video file (or a P-frame if the nearest I-frame is too far)
+This script changes timecodes in a xml/txt chapter file to match the nearest I-frame of a video file (or a P-frame if the nearest I-frame is too far)
 
 positional arguments:
   chapter              Absolute or relative path to xml/txt chapter file

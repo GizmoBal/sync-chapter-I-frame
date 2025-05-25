@@ -25,7 +25,7 @@ def getDeltaTime(string):
 colorama_init()
 
 parser = argparse.ArgumentParser( \
-    description='This script change timecodes in a xml/txt chapter file to match the nearest I-frame of a video file (or a P-frame if the nearest I-frame is too far)')
+    description='This script changes timecodes in a xml/txt chapter file to match the nearest I-frame of a video file (or a P-frame if the nearest I-frame is too far)')
 
 parser.add_argument('chapter', type=str, help='Absolute or relative path to xml/txt chapter file')
 parser.add_argument('video', type=str, help='Absolute or relative path to mkv/hevc/265/avc/264 video file')
