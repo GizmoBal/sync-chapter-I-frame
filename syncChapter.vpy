@@ -43,7 +43,7 @@ if not os.path.exists(videoFile):
     sys.exit(Fore.RED + "Video file not found." + Style.RESET_ALL)
 if pframe == None:
     pframe = 10000
-if not isinstance(pframe, int)
+if not isinstance(pframe, int):
     sys.exit(Fore.RED + "-p/--pframe option only accepts integer argument." + Style.RESET_ALL)
 
 chapExt = os.path.splitext(chapterFile)[1]
