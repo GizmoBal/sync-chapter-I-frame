@@ -34,4 +34,4 @@ If the -p option is not provided, then the script will always search for the nea
 
 ## Features
 
-The script generates a new xml/txt chapter file with all the timecodes updated. It prints on stdout the number of frames by which each chapter has been shifted and if the corresponding new frame is a I-frame or a P-frame.
+The script generates a new xml/txt chapter file with all the timecodes updated. It prints on stdout the number of frames by which each chapter has been shifted and whether the corresponding new frame is a I-frame or a P-frame.
