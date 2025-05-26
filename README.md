@@ -6,7 +6,7 @@ When you have sync'ed chapters coming from another source to a video file, you m
 
 ## Requirements
 
-This script needs a working installation of `VapourSynth` with the `ffms2` indexer and the `mediainfo` commandline.
+This script needs a working installation of `VapourSynth` with the `ffms2` indexer.
 
 
 ## Screenshots
