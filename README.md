@@ -17,7 +17,7 @@ This script needs a working installation of `VapourSynth` with the `ffms2` index
 ## Usage
 
 ```
-usage: syncChapter.vpy [-h] [-p PFRAME] chapter video
+usage: syncChapter.vpy [-h] [-p PFRAME] [-o OUTPUT] chapter video
 
 This script changes timecodes in a xml/txt chapter file to match the nearest I-frame of a video file (or a P-frame if the nearest I-frame is too far)
 
@@ -28,6 +28,7 @@ positional arguments:
 options:
   -h, --help           show this help message and exit
   -p, --pframe PFRAME  Maximal admissible distance to nearest I-frame
+  -o, --output OUTPUT  Output filename
 ```
 
 If the -p option is not provided, then the script will always search for the nearest I-frame, no matter how far it is. If this option is given with an integer argument, the script will first search for an I-frame within the admissible range and fall back to the nearest P-frame if no I-frame is found within the admissible range.
