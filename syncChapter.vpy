@@ -30,12 +30,14 @@ parser = argparse.ArgumentParser( \
 parser.add_argument('chapter', type=str, help='Absolute or relative path to xml/txt chapter file')
 parser.add_argument('video', type=str, help='Absolute or relative path to mkv/hevc/265/avc/264 video file')
 parser.add_argument('-p', '--pframe', type=int, help='Maximal admissible distance to nearest I-frame')
+parser.add_argument('-o', '--output', type=str, help='Output filename')
 
 args = parser.parse_args()
 
 chapterFile = os.path.abspath(args.chapter)
 videoFile = os.path.abspath(args.video)
 pframe = args.pframe
+outputFile = args.output
 
 if not os.path.exists(chapterFile):
     sys.exit(Fore.RED + "Chapter file not found." + Style.RESET_ALL)
@@ -44,16 +46,31 @@ if not os.path.exists(videoFile):
 if pframe == None:
     pframe = 10000
 
+
 chapExt = os.path.splitext(chapterFile)[1]
 
 if chapExt == '.xml':
     with open(chapterFile, 'r') as chapter:
         chapterText = chapter.read()
         numberChapter = len(re.findall("<ChapterTimeStart>([0-9.:;]*)</ChapterTimeStart>",chapterText))
+    if outputFile == None:
+        outputFile = 'sync.I.frames.chapters.xml'
+    elif Path(outputFile).suffix != '.xml':
+        if len(Path(outputFile).suffix) == 4:
+            outputFile = Path(outputFile).stem + '.xml'
+        else:
+            outputFile = outputFile + '.xml'
 elif chapExt =='.txt':
     with open(chapterFile, 'r') as chapter:
         numberChapter = len(chapter.readlines())
     numberChapter = int(numberChapter/2)
+    if outputFile == None:
+        outputFile = 'sync.I.frames.chapters.txt'
+    elif Path(outputFile).suffix != '.txt':
+        if len(Path(outputFile).suffix) == 4:
+            outputFile = Path(outputFile).stem + '.txt'
+        else:
+            outputFile = outputFile + '.txt'
 else:
     sys.exit(Fore.RED + "Wrong chapter file." + Style.RESET_ALL)
 if numberChapter < 1:
@@ -153,10 +170,7 @@ for i in range(1,len(timecodeOrig)):
     timecodeSynced.append(newTimeCode)
 
 origChapterFile = Path(chapterFile)
-if chapExt == '.xml':
-    syncedChapterFile = Path('sync.I.frames.chapter.xml')
-else:
-    syncedChapterFile = Path('sync.I.frames.chapter.txt')
+syncedChapterFile = Path(outputFile)
 syncedChapterFile.write_text(origChapterFile.read_text())
 for i in range(len(timecodeOrig)):
     origString = str(timecodeOrig[i])
